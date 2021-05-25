@@ -2,6 +2,8 @@ package com.algaworks.algalog.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,7 +37,7 @@ public class ClienteController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> buscar(@PathVariable Long id) {
+	public ResponseEntity<Cliente> buscar(@Valid @PathVariable Long id) {
 		return clienteRepository.findById(id)
 				.map(ResponseEntity::ok)
 				.orElse(ResponseEntity.notFound().build());
@@ -44,12 +46,12 @@ public class ClienteController {
 	
 	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
-	public Cliente cadastrar(@RequestBody Cliente cliente){
+	public Cliente cadastrar(@Valid @RequestBody Cliente cliente){
 		return clienteRepository.save(cliente);
 	}
 	
 	@PutMapping("{id}")
-	public ResponseEntity<Cliente> atualizar (@RequestBody Cliente cliente, @PathVariable Long id){
+	public ResponseEntity<Cliente> atualizar (@Valid @RequestBody Cliente cliente, @PathVariable Long id){
 		
 		if(!clienteRepository.existsById(id)) {
 			return ResponseEntity.notFound().build();
@@ -63,7 +65,7 @@ public class ClienteController {
 	}
 	
 	@DeleteMapping("/{id}")
-	private ResponseEntity<Void> remover (@PathVariable Long id) {
+	private ResponseEntity<Void> remover (@Valid @PathVariable Long id) {
 		
 		if(!clienteRepository.existsById(id)) {
 			ResponseEntity.notFound().build();
