@@ -1,17 +1,14 @@
 package com.algaworks.algalog.api.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -37,7 +34,7 @@ public class ClienteController {
 		return clienteRepository.findAll();
 	}
 
-	@GetMapping("/{clienteId}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> buscar(@PathVariable Long id) {
 		return clienteRepository.findById(id)
 				.map(ResponseEntity::ok)
@@ -45,12 +42,36 @@ public class ClienteController {
 	
 	}
 	
-	@PostMapping("/{id}")
+	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
-	public Cliente cadastrar(@RequestBody @PathVariable Cliente cliente){
+	public Cliente cadastrar(@RequestBody Cliente cliente){
 		return clienteRepository.save(cliente);
 	}
 	
+	@PutMapping("{id}")
+	public ResponseEntity<Cliente> atualizar (@RequestBody Cliente cliente, @PathVariable Long id){
+		
+		if(!clienteRepository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		cliente.setId(id);
+		cliente =  clienteRepository.save(cliente);
+		
+		return ResponseEntity.ok(cliente);	
+		
+	}
 	
+	@DeleteMapping("/{id}")
+	private ResponseEntity<Void> remover (@PathVariable Long id) {
+		
+		if(!clienteRepository.existsById(id)) {
+			ResponseEntity.notFound().build();
+		}
+		clienteRepository.deleteById(id);
+		
+		return ResponseEntity.noContent().build();
+
+	}
 	
 }
