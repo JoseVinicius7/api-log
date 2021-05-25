@@ -1,6 +1,7 @@
 package com.algaworks.algalog.api.exception;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,7 @@ public class ApiError {
 	int status;
 	LocalDateTime data;
 	String titulo;
+	List<Campos> campos;
 	
 	@Getter
 	@AllArgsConstructor

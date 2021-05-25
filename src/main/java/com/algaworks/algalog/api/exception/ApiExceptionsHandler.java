@@ -43,6 +43,7 @@ public class ApiExceptionsHandler extends ResponseEntityExceptionHandler {
 
 		apiError.setStatus(status.value());
 		apiError.setData(LocalDateTime.now());
+		apiError.setCampos(campos);
 
 		return super.handleExceptionInternal(ex, apiError, headers, status, request);
 	}
