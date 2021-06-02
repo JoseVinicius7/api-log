@@ -1,6 +1,9 @@
 package com.algaworks.algalog.api.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +24,7 @@ public class EntregaController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Entrega solicitacao(@RequestBody Entrega entrega){
+	public Entrega solicitacao(@Valid @RequestBody Entrega entrega){
 		return entregaService.solicitacao(entrega);
 	}
 }
