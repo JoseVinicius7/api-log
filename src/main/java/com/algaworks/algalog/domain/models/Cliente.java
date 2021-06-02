@@ -1,4 +1,4 @@
-package com.algaworks.algalog.api.models;
+package com.algaworks.algalog.domain.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.algaworks.algalog.api.ValidacaoGroups;
+import com.algaworks.algalog.domain.ValidacaoGroups;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

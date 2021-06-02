@@ -1,4 +1,4 @@
-package com.algaworks.algalog.api.models;
+package com.algaworks.algalog.domain.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 
-import com.algaworks.algalog.api.ValidacaoGroups;
+import com.algaworks.algalog.domain.ValidacaoGroups;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;

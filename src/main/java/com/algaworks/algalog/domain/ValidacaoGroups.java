@@ -1,4 +1,4 @@
-package com.algaworks.algalog.api;
+package com.algaworks.algalog.domain;
 
 public interface ValidacaoGroups {
 	

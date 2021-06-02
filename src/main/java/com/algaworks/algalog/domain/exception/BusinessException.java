@@ -1,4 +1,4 @@
-package com.algaworks.algalog.api.exception;
+package com.algaworks.algalog.domain.exception;
 
 public class BusinessException extends RuntimeException{
 

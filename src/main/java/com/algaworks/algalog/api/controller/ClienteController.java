@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.algaworks.algalog.api.models.Cliente;
-import com.algaworks.algalog.api.repository.ClienteRepository;
-import com.algaworks.algalog.api.service.ClienteService;
+import com.algaworks.algalog.domain.models.Cliente;
+import com.algaworks.algalog.domain.repository.ClienteRepository;
+import com.algaworks.algalog.domain.service.ClienteService;
 
 import lombok.AllArgsConstructor;
 
