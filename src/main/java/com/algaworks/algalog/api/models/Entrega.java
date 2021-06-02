@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 
@@ -41,7 +42,8 @@ public class Entrega {
 	@NotNull
 	@ManyToOne
 	private Cliente cliente;
-
+	
+	
 	@Embedded
 	private Destinatario destinatario;
 	
