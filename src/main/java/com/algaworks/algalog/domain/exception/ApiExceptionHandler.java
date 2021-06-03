@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @ControllerAdvice
-public class ApiExceptionsHandler extends ResponseEntityExceptionHandler {
+public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 	private MessageSource messageSource;
 
@@ -49,6 +49,21 @@ public class ApiExceptionsHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(BusinessException.class)
 	public ResponseEntity<Object> handleBusiness(BusinessException ex, WebRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
+		
+		ApiError apiError = new ApiError();
+
+		apiError.setStatus(status.value());
+		apiError.setData(LocalDateTime.now());
+		apiError.setTitulo(ex.getMessage());
+
+		
+		return handleExceptionInternal(ex,apiError, new HttpHeaders(), status, request);
+		
+	}
+	
+	@ExceptionHandler(EntidadeNaoEncontradaException.class)
+	public ResponseEntity<Object> handleBusiness(EntidadeNaoEncontradaException ex, WebRequest request) {
+		HttpStatus status = HttpStatus.NOT_FOUND;
 		
 		ApiError apiError = new ApiError();
 
