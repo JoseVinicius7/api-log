@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 
 import com.algaworks.algalog.domain.ValidacaoGroups;
+import com.algaworks.algalog.domain.exception.BusinessException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
@@ -76,5 +77,22 @@ public class Entrega {
 				
 		return ocorrencia;
 	}
+	
+	public void finalizar () {
+		if(naoPodeSerFinalizado()){
+			throw new BusinessException("Entrega não pode ser finalizada!");
+		}
+		setStatus(StatusEntrega.FINALIZADA);
+		setDataFinalizacao(LocalDateTime.now());
+	}
+
+	public boolean podeserfinalizado() {
+		return StatusEntrega.PENDENTE.equals(getStatus());
+	}
+	public boolean naoPodeSerFinalizado() {
+		return !podeserfinalizado();
+	}
+	
+
 
 }
